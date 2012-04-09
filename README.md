@@ -1,6 +1,21 @@
 Backbone Subroute
 =================
 
+About
+-------
+
+Backbone.SubRoute extends the functionality of Backbone.Router such that each of an application's modules
+can define its own module-specific routes.  This eliminates the need for one monolithic Router configuration,
+The base router can instead act as a simple delegator that forwards module-specific routes to the
+appropriate module-specific SubRoute.
+
+For example, given this URL:
+  http:example.org/myModule/foo/bar
+
+...the base router would be responsible for invoking and delegating to the proper module based on "myModule".
+The module would then have its own SubRoute which would have its own mappings for the foo/bar part.
+
+This project is based on a Gist by Tim Branyan: https:gist.github.com/1235317
 
 License
 -------
