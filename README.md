@@ -15,7 +15,7 @@ For example, given this URL:
 ...the base router would be responsible for invoking and delegating to the proper module based on "myModule".
 The module would then have its own SubRoute which would have its own mappings for the foo/bar part.
 
-This project is based on a Gist by Tim Branyan: https:gist.github.com/1235317
+This project is based on a Gist by Tim Branyen: https:gist.github.com/1235317
 
 License
 -------
