@@ -19,7 +19,7 @@ if (!Backbone) {
 }
 
 Backbone.SubRoute = Backbone.Router.extend( {
-    constructor:function ( prefix ) {
+    constructor:function ( prefix, options ) {
         var routes = {};
 
         // Prefix is optional, set to empty string if not passed
@@ -46,7 +46,7 @@ Backbone.SubRoute = Backbone.Router.extend( {
         this.routes = routes;
 
         // Required to have Backbone set up routes
-        Backbone.Router.prototype.constructor.call( this );
+        Backbone.Router.prototype.constructor.call( this, options );
 
         // grab the full URL
         var hash = Backbone.history.getHash();
