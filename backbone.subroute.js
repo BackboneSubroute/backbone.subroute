@@ -49,7 +49,7 @@ Backbone.SubRoute = Backbone.Router.extend( {
         Backbone.Router.prototype.constructor.call( this, options );
 
         // grab the full URL
-        var hash = Backbone.history.getHash();
+        var hash = Backbone.history.getFragment();
 
         // check if there is already a part of the URL that this subview cares about...
         var hashPart = hash.substr( prefix.length, hash.length );
