@@ -52,12 +52,10 @@ Backbone.SubRoute = Backbone.Router.extend( {
         var hash = Backbone.history.getHash();
 
         // check if there is already a part of the URL that this subview cares about...
-        var hashPart = hash.substr( prefix.length, hash.length );
-
         // ...if so, trigger the subroute immediately.  this supports the case where 
         // a user directly navigates to a URL with a subroute on the first page load.
-        if ( hashPart && hashPart != "" ) {
-            Backbone.history.loadUrl( prefix + hashPart );
+        if ( hash.match(new RegExp("^" + prefix + "?(.*)")) ) {
+            Backbone.history.loadUrl( hash );
         }
     },
     navigate:function ( route, options ) {
