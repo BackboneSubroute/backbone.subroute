@@ -1,8 +1,9 @@
-Backbone Subroute
-=================
+#Backbone Subroute
 
-About
--------
+
+##About
+
+Backbone's Router feature is really powerful, but for large multi-module apps, it can quickly become large and unmaintainable.  
 
 Backbone.SubRoute extends the functionality of Backbone.Router such that each of an application's modules
 can define its own module-specific routes.  This eliminates the need for one monolithic Router configuration,
@@ -15,10 +16,120 @@ For example, given this URL:
 ...the base router would be responsible for invoking and delegating to the proper module based on "myModule".
 The module would then have its own SubRoute which would have its own mappings for the foo/bar part.
 
-This project is based on a Gist by Tim Branyen: https:gist.github.com/1235317
+This project is based on [a Gist by Tim Branyen](https:gist.github.com/1235317), and [used with permission](https://gist.github.com/1235317/74bf2745515d902e0bfc87bd8e95e94c93362915#gistcomment-234230) from the original author.
 
-License
--------
+##Usage
+
+### Defining a SubRouter
+Let's say that you've got a section of your web app multiple pieces of functionality all live under the URL prefix `http://yourserver.org/books`.  Here's how you'd create your subrouter.  
+
+```
+var BooksRouter = Backbone.SubRoute.extend({
+    routes: {
+        ""               : "showBookstoreHomepage", 
+        "search"         : "searchBooks",           
+        "view/:bookId"   : "viewBookDetail",        
+    },
+    showBookstoreHomepage: function() {
+        // ...module-specific code
+    },
+    searchBooks: function() {
+        // ...module-specific code
+    },
+    viewBookDetail: function(bookId) {
+        // ...module-specific code using bookId param
+    }
+});
+```
+Note that the subrouter, itself, doesn't know or care what its prefix is.  The prefix is only provided when instantiating specific instances of the sub-router.  This makes sub-routers especially useful for reusing common pieces of code.
+
+### Creating an Instance
+
+To use your sub-router, siply call its constructor and provide a prefix, like so:
+
+```
+var mySubRouteInstance = new BooksRouter("books");
+```
+
+### Understanding The Magic
+
+Given the example above, with an instance of the sub-route being created with the `"books"` argument passed as a constructor, and deployed on a server with a base URL of `yourserver.org`, this results in the following routes being created:
+
+<table>
+  <tr>
+    <th>Subroute</th><th>Expands To</th><th>Matches URL</th>
+  </tr>
+  <tr>
+    <td>""</td><td>books</td><td>http://yourserver.org/books</td>
+  </tr>
+  <tr>
+    <td>"search"</td><td>books/search</td><td>http://yourserver.org/books/search</td>
+  </tr>
+  <tr>
+    <td>"view/:bookId"</td><td>books/view/:bookId</td><td>http://yourserver.org/books/view/1234</td>
+  </tr>
+</table>
+
+### Passing Parameters to SubRouter Instances
+
+When instantiating a SubRouter, you may wish to provide some parameters from the calling code, which may be needed in your sub-router code.  The sub-router constructor takes an optional object literal as a second argument.
+
+For instance:
+
+```
+var mySubRouteInstance = new BooksRouter("books", {locale: "en_US", isVIP: true));
+```
+
+Then in your sub-router definition, you can access these parameters using the familiar Backbone `options` object, used in other Backbone components.  Like so:
+
+```
+initialize: function(options) {
+    this.locale = options.locale;
+    this.isVIP = options.isVIP;
+}
+
+```
+Thanks to [@carpeliam](https://github.com/ModelN/backbone.subroute/pull/2) for this feature.
+
+### Trailing Slashes
+
+Backbone treats routes with trailing slashes as totally different routes than those without.  For instance, these are two different routes in Backbone:
+
+`"search"`
+
+`"search/"`
+
+URL semantics aside, [many people have found this behavior annoying](https://github.com/documentcloud/backbone/issues/848).  If you're one of them, and you want to support either format without duplicating each and every one of your routes, you can pass the optional `createTrailingSlashRoutes` parameter when you instantiate your sub-router.  
+
+For example:
+
+```
+var mySubRouteInstance = new BooksRouter("books", {createTrailingSlashRoutes: true));
+```
+
+Using the examples above, a URL of either `http://yourserver.org/books/search` or `http://yourserver.org/books/search/` would fire the `searchBooks()` callback.
+
+## More Examples
+
+See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on how to set up and use your sub-routes.
+
+## Version History
+
+### 0.2
+*Released 15 July 2012*
+
+* AMD support
+* Added `createTrailingSlashRoutes` property
+* No longer append trailing slash to route prefix (to support default empty-string routes)
+* Robust handling of subroute path creation, supporting prefixes with and without trailing slashes
+
+
+### 0.1
+*Released 16 April 2012*
+
+* Initial version based on Tim's gist, with a fix for invoking a subroute on first load
+
+##License
 The MIT License (MIT)
 
 Copyright (c) 2012 Model N, Inc.

@@ -1,71 +1,86 @@
-// Copyright (C) 2012 Model N, Inc.  
-// Released under the MIT License
+// backbone-subroute.js v0.2
 //
-// Backbone.SubRoute extends the functionality of Backbone.Router such that each of an application's modules
-// can define its own module-specific routes.  This eliminates the need for one monolithic Router configuration,
-// The base router can instead act as a simple delegator that forwards module-specific routes to the
-// appropriate module-specific SubRoute.
+// Copyright (C) 2012 Dave Cadwallader, Model N, Inc.  
+// Distributed under the MIT License
 //
-// For example, given this URL:
-//   http://example.org/myModule/foo/bar
-//
-// ...the base router would be responsible for invoking and delegating to the proper module based on "myModule".
-// The module would then have its own SubRoute which would have its own mappings for the foo/bar part.
-//
-// This project is based on a Gist by Tim Branyan: https://gist.github.com/1235317
+// Documentation and full license available at:
+// https://github.com/ModelN/backbone.subroute
 
-if (!Backbone) {
-    throw new Error('Backbone.Subroute: Backbone dependency was not found');
-}
-
-Backbone.SubRoute = Backbone.Router.extend( {
-    constructor:function ( prefix, options ) {
-        var routes = {};
-
-        // Prefix is optional, set to empty string if not passed
-        this.prefix = prefix = prefix || "";
-
-        // Allow for optionally omitting trailing /.  Since base routes do not
-        // trigger with a trailing / this is actually kind of important =)
-        if ( prefix.substr( -1 ) != "/" ) {
-            prefix = prefix + '/';
-        }
-
-        // Every route needs to be prefixed
-        _.each( this.routes, function ( callback, path ) {
-            if ( path ) {
-                routes[prefix + path] = callback;
-            } else {
-                // If the path is "" just set to prefix, this is to comply
-                // with how Backbone expects base paths to look gallery vs gallery/
-                routes[prefix.substr( 0, prefix.length - 1 )] = callback;
-            }
-        } );
-
-        // Must override with prefixed routes
-        this.routes = routes;
-
-        // Required to have Backbone set up routes
-        Backbone.Router.prototype.constructor.call( this, options );
-
-        // grab the full URL
-        var hash = Backbone.history.getHash();
-
-        // check if there is already a part of the URL that this subview cares about...
-        var hashPart = hash.substr( prefix.length, hash.length );
-
-        // ...if so, trigger the subroute immediately.  this supports the case where 
-        // a user directly navigates to a URL with a subroute on the first page load.
-        if ( hashPart && hashPart != "" ) {
-            Backbone.history.loadUrl( prefix + hashPart );
-        }
-    },
-    navigate:function ( route, options ) {
-        if ( route.substr( 0, 1 ) != '/' && route.indexOf( this.prefix.substr( 0,
-                this.prefix.length - 1 ) ) != 0 ) {
-            route = this.prefix + route;
-        }
-        Backbone.Router.prototype.navigate.call( this, route, options );
+(function (factory) {
+    if (typeof define === 'function' && define.amd) {
+        // Register as an AMD module if available...
+        define(['underscore', 'backbone'], factory);
+    } else {
+        // Browser globals for the unenlightened...
+        factory(_, Backbone);
     }
-} );
+}(function(_, Backbone){
 
+    Backbone.SubRoute = Backbone.Router.extend( {
+        constructor:function ( prefix, options ) {
+            var routes = {};
+
+            // Prefix is optional, set to empty string if not passed
+            this.prefix = prefix = prefix || "";
+
+            // SubRoute instances may be instantiated using a prefix with or without a trailing slash.
+            // If the prefix does *not* have a trailing slash, we need to insert a slash as a separator
+            // between the prefix and the sub-route path for each route that we register with Backbone.        
+            var separator =
+                    ( prefix.substr( -1 ) === "/" )
+                            ? ""
+                            : "/";
+
+            // if you want to match "books" and "books/" without creating separate routes, set this
+            // option to "true" and the sub-router will automatically create those routes for you.
+            var createTrailingSlashRoutes = options && options.createTrailingSlashRoutes;
+
+            // Register each sub-route with Backbone by combining the prefix and the sub-route path 
+            _.each( this.routes, function ( callback, path ) {
+                if ( path ) {
+
+                    // strip off any leading slashes in the sub-route path, 
+                    // since we already handle inserting them when needed.
+                    if (path.substr(0) === "/") {
+                        path = path.substr(1, path.length);
+                    }
+
+                    routes[prefix + separator + path] = callback;
+
+                    if (createTrailingSlashRoutes) {
+                        routes[prefix + separator + path + "/"] = callback;
+                    }
+
+                } else {
+                    // default routes (those with a path equal to the empty string) 
+                    // are simply registered using the prefix as the route path.
+                    routes[prefix] = callback;
+
+                    if (createTrailingSlashRoutes) {
+                        routes[prefix + "/"] = callback;
+                    }
+                }
+            } );
+
+            // Override the local sub-routes with the fully-qualified routes that we just set up.
+            this.routes = routes;
+
+            // Required to have Backbone set up routes
+            Backbone.Router.prototype.constructor.call( this, options );
+
+            // grab the full URL
+            var hash = Backbone.history.getHash();
+
+            // Trigger the subroute immediately.  this supports the case where 
+            // a user directly navigates to a URL with a subroute on the first page load.
+            Backbone.history.loadUrl( hash );
+        },
+        navigate:function ( route, options ) {
+            if ( route.substr( 0, 1 ) != '/' && route.indexOf( this.prefix.substr( 0,
+                    this.prefix.length - 1 ) ) != 0 ) {
+                route = this.prefix + route;
+            }
+            Backbone.Router.prototype.navigate.call( this, route, options );
+        }
+    } );
+}));
