@@ -81,6 +81,28 @@
                 route = this.prefix + route;
             }
             Backbone.Router.prototype.navigate.call( this, route, options );
+        },
+        
+        reverse:function(name,options){
+            // Create a _reverse object to contain reverse details
+            this._reverse=this._reverse || {};
+            
+            // Populate the _reverse object lazily on request
+            if (!this._reverse[name]){
+                
+                // Get the reverse details from provided options
+                // Should be the format {name:template_string}
+                if (!this.options.reverse[name]){
+                    this._reverse[name]=_.template()this.options.reverse[name]);
+                } else {
+                    //code to reverse directly from route is currently outstanding
+                };
+                
+            };
+            return this._reverse[name](options); 
+        },
+        navigate_reverse:function(name,reverse_options,navigate_options){
+            this.navigate(this.reverse(name,reverse_options),navigate_options)
         }
     } );
 }));
