@@ -93,10 +93,28 @@
                 // Get the reverse details from provided options
                 // Should be the format {name:template_string}
                 if (!this.options.reverse[name]){
-                    this._reverse[name]=_.template()this.options.reverse[name]);
+                    template_string.template()this.options.reverse[name]);
+                } else if (this.routes){
+                    var path =_.find(this.routes,function(route){
+                        if (route[1]==name) return route[0];
+                    });
+                    if (_.isRegExp(path)){
+                        //raise error here
+                    }
+                    // apply some magic here to substitute the :namedParam and *splats
+                    // with <%-namedParam%> and <%-splats%>
+                    template_string =path
+                    
                 } else {
-                    //code to reverse directly from route is currently outstanding
+                    //raise error here
                 };
+                
+                var separator = (this.prefix.substr( -1 ) === "/" )? "": "/";                
+                if (template_string.substr(0) === "/") {
+                    template_string = template_string.substr(1, template_string.length);
+                }       
+                if (this.options.createTrailingSlashRoutes) template_string=template_string+'/';
+                this._reverse[name]=this.prefix + separator+template_string                
                 
             };
             return this._reverse[name](options); 
