@@ -99,14 +99,14 @@
                         if (route[1]==name) return route[0];
                     });
                     if (_.isRegExp(path)){
-                        //raise error here
+                        throw 'A regular expression route cannot be used for reverse of '+name;
                     }
                     // apply some magic here to substitute the :namedParam and *splats
                     // with <%-namedParam%> and <%-splats%>
-                    template_string =path
+                    template_string =path.replace(/[:*](\w+)/g,'<%=$1%>')
                     
                 } else {
-                    //raise error here
+                    throw 'There is no route specified for '+name;
                 };
                 
                 var separator = (this.prefix.substr( -1 ) === "/" )? "": "/";                
