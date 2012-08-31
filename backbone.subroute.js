@@ -1,4 +1,4 @@
-// backbone-subroute.js v0.2
+// backbone-subroute.js v0.3
 //
 // Copyright (C) 2012 Dave Cadwallader, Model N, Inc.  
 // Distributed under the MIT License
@@ -26,7 +26,7 @@
             // SubRoute instances may be instantiated using a prefix with or without a trailing slash.
             // If the prefix does *not* have a trailing slash, we need to insert a slash as a separator
             // between the prefix and the sub-route path for each route that we register with Backbone.        
-            var separator =
+            this.separator =
                     ( prefix.substr( -1 ) === "/" )
                             ? ""
                             : "/";
@@ -45,10 +45,10 @@
                         path = path.substr(1, path.length);
                     }
 
-                    routes[prefix + separator + path] = callback;
+                    routes[prefix + this.separator + path] = callback;
 
                     if (createTrailingSlashRoutes) {
-                        routes[prefix + separator + path + "/"] = callback;
+                        routes[prefix + this.separator + path + "/"] = callback;
                     }
 
                 } else {
@@ -60,7 +60,7 @@
                         routes[prefix + "/"] = callback;
                     }
                 }
-            } );
+            }, this );
 
             // Override the local sub-routes with the fully-qualified routes that we just set up.
             this.routes = routes;
@@ -78,7 +78,10 @@
         navigate:function ( route, options ) {
             if ( route.substr( 0, 1 ) != '/' && route.indexOf( this.prefix.substr( 0,
                     this.prefix.length - 1 ) ) != 0 ) {
-                route = this.prefix + route;
+                
+                route = this.prefix + 
+                        ( route ? this.separator : "") + 
+                        route;
             }
             Backbone.Router.prototype.navigate.call( this, route, options );
         }
