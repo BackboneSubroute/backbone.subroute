@@ -84,6 +84,46 @@
                         route;
             }
             Backbone.Router.prototype.navigate.call( this, route, options );
+        },
+        
+        reverse:function(name,options){
+            // Create a _reverse object to contain reverse details
+            this._reverse=this._reverse || {};
+            
+            // Populate the _reverse object lazily on request
+            if (!this._reverse[name]){
+                
+                // Get the reverse details from provided options
+                // Should be the format {name:template_string}
+                if (!this.options.reverse[name]){
+                    template_string.template()this.options.reverse[name]);
+                } else if (this.routes){
+                    var path =_.find(this.routes,function(route){
+                        if (route[1]==name) return route[0];
+                    });
+                    if (_.isRegExp(path)){
+                        throw 'A regular expression route cannot be used for reverse of '+name;
+                    }
+                    // apply some magic here to substitute the :namedParam and *splats
+                    // with <%-namedParam%> and <%-splats%>
+                    template_string =path.replace(/[:*](\w+)/g,'<%=$1%>')
+                    
+                } else {
+                    throw 'There is no route specified for '+name;
+                };
+                
+                var separator = (this.prefix.substr( -1 ) === "/" )? "": "/";                
+                if (template_string.substr(0) === "/") {
+                    template_string = template_string.substr(1, template_string.length);
+                }       
+                if (this.options.createTrailingSlashRoutes) template_string=template_string+'/';
+                this._reverse[name]=this.prefix + separator+template_string                
+                
+            };
+            return this._reverse[name](options); 
+        },
+        navigate_reverse:function(name,reverse_options,navigate_options){
+            this.navigate(this.reverse(name,reverse_options),navigate_options)
         }
     } );
 }));
