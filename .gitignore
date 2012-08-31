@@ -1,0 +1,15 @@
+hooks
+info
+HEAD
+README
+config
+description
+hooks/applypatch-msg.sample
+hooks/commit-msg.sample
+hooks/post-update.sample
+hooks/pre-applypatch.sample
+hooks/pre-commit.sample
+hooks/pre-rebase.sample
+hooks/prepare-commit-msg.sample
+hooks/update.sample
+info/exclude
