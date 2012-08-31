@@ -18,6 +18,19 @@ The module would then have its own SubRoute which would have its own mappings fo
 
 This project is based on [a Gist by Tim Branyen](https:gist.github.com/1235317), and [used with permission](https://gist.github.com/1235317/74bf2745515d902e0bfc87bd8e95e94c93362915#gistcomment-234230) from the original author.
 
+## Get Involved!
+
+### Mailing List
+
+Join the [Backbone.Subroute Google Group](https://groups.google.com/forum/#!forum/backbone-subroute) to discuss new features and stay-up-to-date on project updates.
+
+### Contributions
+
+Contributions are greatly appreciated!  For best results:
+
+* Please submit a failing test spec with any issue reports.
+* Please submit passing test specs for new features.
+
 ##Usage
 
 ### Defining a SubRouter
@@ -109,11 +122,23 @@ var mySubRouteInstance = new BooksRouter("books", {createTrailingSlashRoutes: tr
 
 Using the examples above, a URL of either `http://yourserver.org/books/search` or `http://yourserver.org/books/search/` would fire the `searchBooks()` callback.
 
+## Unit Tests
+
+The `spec` directory in the repo contains a suite of test specs.  To run them, start a web server in the project directory, then point your browser to the `spec` directory.
+
+The test specs can also be run online [here](http://modeln.github.com/backbone.subroute/spec/).
+
 ## More Examples
 
 See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on how to set up and use your sub-routes.
 
 ## Version History
+
+### 0.3
+*Released 30 August 2012*
+
+* Fixed issue in `navigate` method where separator `/` character was omitted after prefix
+* Added Jasmine test specs
 
 ### 0.2
 *Released 15 July 2012*
