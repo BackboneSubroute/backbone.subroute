@@ -27,7 +27,7 @@
             // If the prefix does *not* have a trailing slash, we need to insert a slash as a separator
             // between the prefix and the sub-route path for each route that we register with Backbone.        
             this.separator =
-                    ( prefix.substr( -1 ) === "/" )
+                    ( prefix.slice( -1 ) === "/" )
                             ? ""
                             : "/";
 
