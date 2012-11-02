@@ -18,7 +18,6 @@
 
     Backbone.SubRoute = Backbone.Router.extend( {
         constructor:function ( prefix, options ) {
-            var routes = {};
 
             // Prefix is optional, set to empty string if not passed
             this.prefix = prefix = prefix || "";
@@ -33,41 +32,16 @@
 
             // if you want to match "books" and "books/" without creating separate routes, set this
             // option to "true" and the sub-router will automatically create those routes for you.
-            var createTrailingSlashRoutes = options && options.createTrailingSlashRoutes;
+            this.createTrailingSlashRoutes = options && options.createTrailingSlashRoutes;
 
-            // Register each sub-route with Backbone by combining the prefix and the sub-route path 
-            _.each( this.routes, function ( callback, path ) {
-                if ( path ) {
-
-                    // strip off any leading slashes in the sub-route path, 
-                    // since we already handle inserting them when needed.
-                    if (path.substr(0) === "/") {
-                        path = path.substr(1, path.length);
-                    }
-
-                    routes[prefix + this.separator + path] = callback;
-
-                    if (createTrailingSlashRoutes) {
-                        routes[prefix + this.separator + path + "/"] = callback;
-                    }
-
-                } else {
-                    // default routes (those with a path equal to the empty string) 
-                    // are simply registered using the prefix as the route path.
-                    routes[prefix] = callback;
-
-                    if (createTrailingSlashRoutes) {
-                        routes[prefix + "/"] = callback;
-                    }
-                }
-            }, this );
-
-            // Override the local sub-routes with the fully-qualified routes that we just set up.
-            this.routes = routes;
+            // Remove the routes from the router so we can add them using this.route() after the 
+            // initialization
+            var routes = this.routes;
+            delete this.routes;
 
             // Required to have Backbone set up routes
             Backbone.Router.prototype.constructor.call( this, options );
-
+          
             // grab the full URL
             var hash = Backbone.history.getHash();
 
@@ -84,6 +58,21 @@
                         route;
             }
             Backbone.Router.prototype.navigate.call( this, route, options );
+        },
+        route : function (route, name, callback) {
+          // strip off any leading slashes in the sub-route path, 
+          // since we already handle inserting them when needed.
+          if (route.substr(0) === "/") {
+            route = route.substr(1, route.length);
+          }
+          
+          route = this.prefix + this.separator + route;
+          
+          if (this.createTrailingSlashRoutes) {
+            Backbone.Router.prototype.route.call(this, route + '/', name, callback);
+          }
+          
+          return Backbone.Router.prototype.route.call(this, route, name, callback);
         }
     } );
 }));
