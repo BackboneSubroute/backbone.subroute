@@ -134,6 +134,14 @@ See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on h
 
 ## Version History
 
+### 0.3.1
+*Released 26 October 2012*
+
+* Fixed [Issue #13](https://github.com/ModelN/backbone.subroute/issues/13).  This was an IE8-only issue where manually 
+  including a trailing slash in a subroute prefix caused a double slash to appear in the fully-qualified route.
+  Thanks to [@mikesnare](https://github.com/mikesnare) for logging the issue and providing the fix!
+* Added Jasmine test specs for above case
+
 ### 0.3
 *Released 30 August 2012*
 

@@ -1,4 +1,4 @@
-describe( "When provided a subroute and prefix using the 'createTrailingSlashRoutes' option", function () {
+describe( "When using the 'createTrailingSlashRoutes' option", function () {
 
     beforeEach( function () {
         SubRouteTest.setUp.call(this, "subroute2", {createTrailingSlashRoutes: true});

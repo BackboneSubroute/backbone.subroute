@@ -8,7 +8,7 @@ var expectRouteNotToBeCalled = function ( url, expandedUrl, routeFunctionName ) 
 
 SubRouteTest = {};
 
-SubRouteTest.setUp = function (prefix, options) {
+SubRouteTest.setUp = function (prefix, options, overrideRoutes) {
 
     var baseRouterDef = Backbone.Router.extend( {
         routes:{
@@ -24,12 +24,18 @@ SubRouteTest.setUp = function (prefix, options) {
     } catch ( e ) {
     }
 
+    var routesToUse = {
+        "":"handleDefaultRoute",
+        "foo":"handleFooRoute"
+    };
+    
+    if (overrideRoutes) {
+        routesToUse = overrideRoutes;
+    } 
+    
     if (prefix) {
         var testRouter = Backbone.SubRoute.extend( {
-            routes:{
-                "":"handleDefaultRoute",
-                "foo":"handleFooRoute"
-            }
+            routes: routesToUse
         } );
 
         this.router = new testRouter( prefix, options );
