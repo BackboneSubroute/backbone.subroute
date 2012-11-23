@@ -69,7 +69,7 @@
             Backbone.Router.prototype.constructor.call( this, options );
 
             // grab the full URL if the history was already initialized
-            if (Backbone.history !== undefined && Backbone.history.getHash !== undefined) {
+            if (Backbone.history !== undefined && Backbone.history.getHash() !== "") {
                 var hash = Backbone.history.getHash();
 
                 // Trigger the subroute immediately.  this supports the case where

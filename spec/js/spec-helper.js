@@ -19,11 +19,6 @@ SubRouteTest.setUp = function (prefix, options, overrideRoutes) {
 
     this.baseRouter = new baseRouterDef();
 
-    try {
-        Backbone.history.start( {silent:true, pushState:true} );
-    } catch ( e ) {
-    }
-
     var routesToUse = {
         "":"handleDefaultRoute",
         "foo":"handleFooRoute"
@@ -40,6 +35,11 @@ SubRouteTest.setUp = function (prefix, options, overrideRoutes) {
 
         this.router = new testRouter( prefix, options );
 
+    }
+
+    try {
+        Backbone.history.start( {silent:true, pushState:true} );
+    } catch ( e ) {
     }
 
     this.routeSpy = sinon.spy();
