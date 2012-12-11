@@ -69,7 +69,12 @@
             Backbone.Router.prototype.constructor.call( this, options );
 
             // grab the full URL
-            var hash = Backbone.history.getHash();
+            var hash;
+            if (Backbone.history.fragment) {
+                hash = Backbone.history.getFragment();
+            } else {
+                hash = Backbone.history.getHash();
+            }
 
             // Trigger the subroute immediately.  this supports the case where 
             // a user directly navigates to a URL with a subroute on the first page load.
