@@ -33,6 +33,8 @@ Contributions are greatly appreciated!  For best results:
 
 ##Usage
 
+```jam install backbone.subroute```
+
 ### Defining a SubRouter
 Let's say that you've got a section of your web app multiple pieces of functionality all live under the URL prefix `http://yourserver.org/books`.  Here's how you'd create your subrouter.  
 
