@@ -134,6 +134,11 @@ See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on h
 
 ## Version History
 
+### 0.3.2
+*Released 22 Jan 2013*
+
+* Skip call to loadUrl on SubRoute init if history hash does not match SubRoute prefix
+
 ### 0.3.1
 *Released 26 October 2012*
 
