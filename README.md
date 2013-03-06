@@ -33,6 +33,8 @@ Contributions are greatly appreciated!  For best results:
 
 ##Usage
 
+```jam install backbone.subroute```
+
 ### Defining a SubRouter
 Let's say that you've got a section of your web app multiple pieces of functionality all live under the URL prefix `http://yourserver.org/books`.  Here's how you'd create your subrouter.  
 
@@ -133,6 +135,11 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on how to set up and use your sub-routes.
 
 ## Version History
+
+### 0.3.2
+*Released 22 Jan 2013*
+
+* Skip call to loadUrl on SubRoute init if history hash does not match SubRoute prefix
 
 ### 0.3.1
 *Released 26 October 2012*

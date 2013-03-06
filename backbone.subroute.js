@@ -1,4 +1,4 @@
-// backbone-subroute.js v0.3.1
+// backbone-subroute.js v0.3.2
 //
 // Copyright (C) 2012 Dave Cadwallader, Model N, Inc.  
 // Distributed under the MIT License
@@ -43,11 +43,22 @@
             Backbone.Router.prototype.constructor.call( this, options );
           
             // grab the full URL
-            var hash = Backbone.history.getHash();
+            var hash;
+            if (Backbone.history.fragment) {
+                hash = Backbone.history.getFragment();
+            } else {
+                hash = Backbone.history.getHash();
+            }
 
             // Trigger the subroute immediately.  this supports the case where 
             // a user directly navigates to a URL with a subroute on the first page load.
-            Backbone.history.loadUrl( hash );
+            if (hash.indexOf(prefix) === 0) {
+                Backbone.history.loadUrl( hash );
+            }
+
+            if (this.postInitialize) {
+                this.postInitialize(options);
+            }
         },
         navigate:function ( route, options ) {
             if ( route.substr( 0, 1 ) != '/' && route.indexOf( this.prefix.substr( 0,
