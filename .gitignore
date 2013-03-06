@@ -13,3 +13,4 @@ hooks/pre-rebase.sample
 hooks/prepare-commit-msg.sample
 hooks/update.sample
 info/exclude
+.idea

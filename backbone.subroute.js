@@ -34,11 +34,6 @@
             // option to "true" and the sub-router will automatically create those routes for you.
             this.createTrailingSlashRoutes = options && options.createTrailingSlashRoutes;
 
-            // Remove the routes from the router so we can add them using this.route() after the 
-            // initialization
-            var routes = this.routes;
-            delete this.routes;
-
             // Required to have Backbone set up routes
             Backbone.Router.prototype.constructor.call( this, options );
           
@@ -77,13 +72,21 @@
             route = route.substr(1, route.length);
           }
           
-          route = this.prefix + this.separator + route;
+          var _route = this.prefix
+          if (route && route.length > 0)
+            _route += (this.separator + route);
           
           if (this.createTrailingSlashRoutes) {
-            Backbone.Router.prototype.route.call(this, route + '/', name, callback);
+            this.routes[_route + '/'] = name
+            Backbone.Router.prototype.route.call(this, _route + '/', name, callback);
           }
           
-          return Backbone.Router.prototype.route.call(this, route, name, callback);
+          // Adding this mainly to support the specs, and for debug-ability.  We're altering the way the router
+          // handles routing, but not updating the actual routes hash.  Might seem weird to anyone trying to
+          // debug a routing issue.
+          this.routes[_route] = name;
+          
+          return Backbone.Router.prototype.route.call(this, _route, name, callback);
         }
     } );
 }));
