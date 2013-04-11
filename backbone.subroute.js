@@ -1,4 +1,4 @@
-// backbone-subroute.js v0.3.2
+// backbone-subroute.js v0.3.2lx
 //
 // Copyright (C) 2012 Dave Cadwallader, Model N, Inc.  
 // Distributed under the MIT License
@@ -89,4 +89,5 @@
           return Backbone.Router.prototype.route.call(this, _route, name, callback);
         }
     } );
+    return Backbone.SubRoute;
 }));
