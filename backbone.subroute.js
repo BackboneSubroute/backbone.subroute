@@ -53,9 +53,9 @@
                 if(hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
                     Backbone.history.loadUrl(hash);
                     return false;
-				}
-				return true;
-			}, this);
+                }
+                return true;
+            }, this);
 
             if (this.postInitialize) {
                 this.postInitialize(options);
