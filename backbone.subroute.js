@@ -50,9 +50,9 @@
             // Check every element, if one matches, break. Prevent multiple matches
             _.every(this.routes, function(key, route){
                 // Use the Backbone parser to turn route into regex for matching
-    			if(hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
-					Backbone.history.loadUrl(hash);
-					return false;
+                if(hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
+                    Backbone.history.loadUrl(hash);
+                    return false;
 				}
 				return true;
 			}, this);
