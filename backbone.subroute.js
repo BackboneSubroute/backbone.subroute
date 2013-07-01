@@ -47,9 +47,15 @@
 
             // Trigger the subroute immediately.  this supports the case where 
             // a user directly navigates to a URL with a subroute on the first page load.
-            if (hash.indexOf(prefix) === 0) {
-                Backbone.history.loadUrl( hash );
-            }
+            // Check every element, if one matches, break. Prevent multiple matches
+            _.every(this.routes, function(key, route){
+                // Use the Backbone parser to turn route into regex for matching
+                if(hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
+                    Backbone.history.loadUrl(hash);
+                    return false;
+                }
+                return true;
+            }, this);
 
             if (this.postInitialize) {
                 this.postInitialize(options);
