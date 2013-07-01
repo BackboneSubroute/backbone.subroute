@@ -13,7 +13,8 @@ SubRouteTest.setUp = function (prefix, options, overrideRoutes) {
     var baseRouterDef = Backbone.Router.extend( {
         routes:{
             "":"handleRootRoute",
-            "foo":"handleRootFooRoute"
+            "foo":"handleRootFooRoute",
+            "user/:user":"handleRootUserRoute"
         }
     } );
 
@@ -26,7 +27,8 @@ SubRouteTest.setUp = function (prefix, options, overrideRoutes) {
 
     var routesToUse = {
         "":"handleDefaultRoute",
-        "foo":"handleFooRoute"
+        "foo":"handleFooRoute",
+        "user/:user":"handleUserRoute"
     };
     
     if (overrideRoutes) {

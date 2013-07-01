@@ -14,7 +14,8 @@ describe( "When an initial URL hash is provided at subroute initialization time"
         var baseRouterDef = Backbone.Router.extend( {
             routes:{
                 "":"handleRootRoute",
-                "foo":"handleRootFooRoute"
+                "foo":"handleRootFooRoute",
+                "user/:user":"handleRootUserRoute"
             }
         } );
 
@@ -28,6 +29,7 @@ describe( "When an initial URL hash is provided at subroute initialization time"
         that = this;
         this.defaultRouteSpy = sinon.spy();
         this.fooRouteSpy = sinon.spy();
+        this.profileRouteSpy = sinon.spy();
 
         this.loadUrlSpy = sinon.spy(Backbone.history, "loadUrl");
 
@@ -39,13 +41,17 @@ describe( "When an initial URL hash is provided at subroute initialization time"
             var testRouter = Backbone.SubRoute.extend( {
                 routes: {
                     "":"handleDefaultRoute",
-                    "foo":"handleFooRoute"
+                    "foo":"handleFooRoute",
+                    "profile":"handleProfileRoute"
                 },
                 handleDefaultRoute: function() {
                     that.defaultRouteSpy();
                 },
                 handleFooRoute: function() {
                     that.fooRouteSpy();
+                },
+                handleProfileRoute: function() {
+	                that.profileRouteSpy();
                 }
             } );
 
@@ -115,6 +121,18 @@ describe( "When an initial URL hash is provided at subroute initialization time"
         expect( this.fooRouteSpy ).not.toHaveBeenCalledWith();
 
         expect( this.loadUrlSpy ).not.toHaveBeenCalledOnce();
+    } );
+    
+    it( 'prefix contains named params', function () {
+	    
+	    Backbone.history.navigate("user/somerandomuser/profile");
+	    
+	    loadSubRoute("user/:user/");
+	    
+	    expect( this.profileRouteSpy ).toHaveBeenCalledOnce();
+        expect( this.profileRouteSpy ).toHaveBeenCalledWith();
+
+        expect( this.loadUrlSpy ).toHaveBeenCalledOnce();
     } );
     
     
