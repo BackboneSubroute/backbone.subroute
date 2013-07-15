@@ -12,7 +12,7 @@ describe( "When a plain Backbone Router is created", function () {
         expect( this.baseRouter.routes[''] ).toEqual( 'handleRootRoute' );
     } );
     it( 'has a "foo" route', function () {
-        expect( this.baseRouter.routes['foo'] ).toEqual( 'handleRootFooRoute' );
+        expect( this.baseRouter.routes.foo ).toEqual( 'handleRootFooRoute' );
     } );
 
     it( 'triggers the "default" route', function () {

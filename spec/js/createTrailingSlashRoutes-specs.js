@@ -9,7 +9,7 @@ describe( "When using the 'createTrailingSlashRoutes' option", function () {
     } );
 
     it( 'has a "default" route', function () {
-        expect( this.router.routes['subroute2'] ).toEqual( 'handleDefaultRoute' );
+        expect( this.router.routes.subroute2 ).toEqual( 'handleDefaultRoute' );
     } );
 
     it( 'has an auto-generated "default" route with a trailing slash', function () {

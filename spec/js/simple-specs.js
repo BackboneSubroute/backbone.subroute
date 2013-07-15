@@ -9,7 +9,7 @@ describe( "When provided a subroute and prefix", function () {
     } );
 
     it( 'has a "default" route', function () {
-        expect( this.router.routes['subroute1'] ).toEqual( 'handleDefaultRoute' );
+        expect( this.router.routes.subroute1 ).toEqual( 'handleDefaultRoute' );
     } );
 
     it( 'does not have a "default" route with a trailing slash', function () {

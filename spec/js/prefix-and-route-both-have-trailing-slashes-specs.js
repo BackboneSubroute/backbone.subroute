@@ -19,7 +19,7 @@ describe( "When both the prefix and routes have a trailing slash", function () {
     } );
 
     it( 'does not have a "default" route without a trailing slash', function () {
-        expect( this.router.routes['subroute3'] ).toBeUndefined();
+        expect( this.router.routes.subroute3 ).toBeUndefined();
     } );
 
     it( 'has a "foo/" route', function () {
