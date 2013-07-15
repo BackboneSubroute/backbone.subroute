@@ -4,7 +4,7 @@ describe( "When an initial URL hash is provided at subroute initialization time"
     beforeEach( function () {
 
         var hash;
-        if (Backbone.history.fragment) {
+        if ( Backbone.history.fragment ) {
             hash = Backbone.history.getFragment();
         } else {
             hash = Backbone.history.getHash();
@@ -12,17 +12,17 @@ describe( "When an initial URL hash is provided at subroute initialization time"
         this.oldHash = hash;
 
         var baseRouterDef = Backbone.Router.extend( {
-            routes:{
-                "":"handleRootRoute",
-                "foo":"handleRootFooRoute",
-                "user/:user":"handleRootUserRoute"
+            routes: {
+                "": "handleRootRoute",
+                "foo": "handleRootFooRoute",
+                "user/:user": "handleRootUserRoute"
             }
         } );
 
         this.baseRouter = new baseRouterDef();
 
         try {
-            Backbone.history.start( {silent:true, pushState:true} );
+            Backbone.history.start( {silent: true, pushState: true} );
         } catch ( e ) {
         }
 
@@ -31,27 +31,27 @@ describe( "When an initial URL hash is provided at subroute initialization time"
         this.fooRouteSpy = sinon.spy();
         this.profileRouteSpy = sinon.spy();
 
-        this.loadUrlSpy = sinon.spy(Backbone.history, "loadUrl");
+        this.loadUrlSpy = sinon.spy( Backbone.history, "loadUrl" );
 
     } );
 
-    var loadSubRoute = function(prefix) {
-        
-        if (prefix) {
+    var loadSubRoute = function ( prefix ) {
+
+        if ( prefix ) {
             var testRouter = Backbone.SubRoute.extend( {
                 routes: {
-                    "":"handleDefaultRoute",
-                    "foo":"handleFooRoute",
-                    "profile":"handleProfileRoute"
+                    "": "handleDefaultRoute",
+                    "foo": "handleFooRoute",
+                    "profile": "handleProfileRoute"
                 },
-                handleDefaultRoute: function() {
+                handleDefaultRoute: function () {
                     that.defaultRouteSpy();
                 },
-                handleFooRoute: function() {
+                handleFooRoute: function () {
                     that.fooRouteSpy();
                 },
-                handleProfileRoute: function() {
-	                that.profileRouteSpy();
+                handleProfileRoute: function () {
+                    that.profileRouteSpy();
                 }
             } );
 
@@ -59,7 +59,7 @@ describe( "When an initial URL hash is provided at subroute initialization time"
 
         }
     };
-    
+
     afterEach( function () {
         try {
             Backbone.history.stop();
@@ -67,7 +67,7 @@ describe( "When an initial URL hash is provided at subroute initialization time"
         }
 
         this.baseRouter = null;
-        Backbone.history.navigate(this.oldHash);
+        Backbone.history.navigate( this.oldHash );
         this.defaultRouteSpy = undefined;
         this.fooRouteSpy = undefined;
         this.loadUrlSpy.restore();
@@ -75,23 +75,23 @@ describe( "When an initial URL hash is provided at subroute initialization time"
 
     it( 'triggers the "default" route if the initial URL matches one of the routes', function () {
 
-        Backbone.history.navigate("subroute6/");      
-                
-        loadSubRoute("subroute6/");
-        
+        Backbone.history.navigate( "subroute6/" );
+
+        loadSubRoute( "subroute6/" );
+
         expect( this.defaultRouteSpy ).toHaveBeenCalledOnce();
         expect( this.defaultRouteSpy ).toHaveBeenCalledWith();
-        
+
         expect( this.loadUrlSpy ).toHaveBeenCalledOnce();
     } );
 
 
     it( 'triggers the "foo" route if the initial URL matches one of the routes', function () {
 
-        Backbone.history.navigate("subroute6/foo");
+        Backbone.history.navigate( "subroute6/foo" );
 
-        loadSubRoute("subroute6/");
-        
+        loadSubRoute( "subroute6/" );
+
         expect( this.fooRouteSpy ).toHaveBeenCalledOnce();
         expect( this.fooRouteSpy ).toHaveBeenCalledWith();
 
@@ -100,9 +100,9 @@ describe( "When an initial URL hash is provided at subroute initialization time"
 
     it( 'does not trigger the "default" route if the initial URL does NOT match one of the routes', function () {
 
-        Backbone.history.navigate("subroute6a/");
+        Backbone.history.navigate( "subroute6a/" );
 
-        loadSubRoute("subroute6/");
+        loadSubRoute( "subroute6/" );
 
         expect( this.defaultRouteSpy ).not.toHaveBeenCalledOnce();
         expect( this.defaultRouteSpy ).not.toHaveBeenCalledWith();
@@ -113,29 +113,28 @@ describe( "When an initial URL hash is provided at subroute initialization time"
 
     it( 'does not trigger the "foo" route if the initial URL does NOT match one of the routes', function () {
 
-        Backbone.history.navigate("subroute6a/foo");
+        Backbone.history.navigate( "subroute6a/foo" );
 
-        loadSubRoute("subroute6/");
+        loadSubRoute( "subroute6/" );
 
         expect( this.fooRouteSpy ).not.toHaveBeenCalledOnce();
         expect( this.fooRouteSpy ).not.toHaveBeenCalledWith();
 
         expect( this.loadUrlSpy ).not.toHaveBeenCalledOnce();
     } );
-    
+
     it( 'prefix contains named params', function () {
-	    
-	    Backbone.history.navigate("user/somerandomuser/profile");
-	    
-	    loadSubRoute("user/:user/");
-	    
-	    expect( this.profileRouteSpy ).toHaveBeenCalledOnce();
+
+        Backbone.history.navigate( "user/somerandomuser/profile" );
+
+        loadSubRoute( "user/:user/" );
+
+        expect( this.profileRouteSpy ).toHaveBeenCalledOnce();
         expect( this.profileRouteSpy ).toHaveBeenCalledWith();
 
         expect( this.loadUrlSpy ).toHaveBeenCalledOnce();
     } );
-    
-    
-    
+
+
 } );    
     
