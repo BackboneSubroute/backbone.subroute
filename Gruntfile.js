@@ -24,7 +24,23 @@ module.exports = function ( grunt ) {
                     host : 'http://127.0.0.1:8000/',
                     vendor: ['lib/underscore.js', 'lib/backbone.js', 'spec/lib/sinon-1.3.4.js', 'spec/lib/jasmine-sinon.js'],
                     specs: 'spec/js/*specs.js',
-                    helpers: 'spec/js/*helper.js'
+                    helpers: 'spec/js/*helper.js',
+                    template: require('grunt-template-jasmine-istanbul'),
+                    templateOptions: {
+                        coverage: '.istanbul/coverage.json',
+                        report: {
+                            type: 'text-summary',
+                            options: {
+                                dir: 'spec'
+                            }
+                        },
+                        thresholds: {
+                            lines: 85,
+                            statements: 85,
+                            branches: 66,
+                            functions: 83
+                        }
+                    }
                 }
             }
         }

@@ -16,3 +16,5 @@ hooks/prepare-commit-msg.sample
 hooks/update.sample
 info/exclude
 .idea
+.grunt
+.istanbul
