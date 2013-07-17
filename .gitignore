@@ -5,7 +5,6 @@ README
 config
 description
 node_modules
-dist
 hooks/applypatch-msg.sample
 hooks/commit-msg.sample
 hooks/post-update.sample
