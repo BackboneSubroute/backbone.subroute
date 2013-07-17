@@ -1,0 +1,27 @@
+{
+    "predef": [
+        "define",
+        "describe",
+        "it",
+        "given",
+        "require",
+        "assert",
+        "before",
+        "after",
+        "sinon",
+        "pavlov",
+        "expect",
+        "beforeEach",
+        "afterEach"
+    ],
+
+    "curly":   true,
+    "eqeqeq":  true,
+    "forin":   true,
+    "noarg":   true,
+    "noempty": true,
+    "nonew":   true,
+    "undef":   true,
+    "strict":  true,
+    "browser": true
+}

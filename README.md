@@ -19,22 +19,89 @@ The module would then have its own SubRoute which would have its own mappings fo
 
 This project is based on [a Gist by Tim Branyen](https:gist.github.com/1235317), and [used with permission](https://gist.github.com/1235317/74bf2745515d902e0bfc87bd8e95e94c93362915#gistcomment-234230) from the original author.
 
+## Downloads
+
+*Latest Stable Release: 0.4.0*
+
+* Minified: [backbone.subroute.min.js](https://github.com/ModelN/backbone.subroute/blob/0.4.0/dist/backbone.subroute.min.js)
+* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.0/backbone.subroute.js)
+* Full Release (Tests, Examples): [0.4.0.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.0.zip).  
+
+*Unreleased Edge Version (master)*
+
+* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/master/dist/backbone.subroute.min.js)
+* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/master/backbone.subroute.js)
+* Full Release (Tests, Examples): [master.zip](https://github.com/ModelN/backbone.subroute/archive/master.zip).  
+
+Visit the [project repo](https://github.com/ModelN/backbone.subroute) to download the latest unreleased code (may be unstable).
+
+
 ## Get Involved!
 
 ### Mailing List
 
 Join the [Backbone.Subroute Google Group](https://groups.google.com/forum/#!forum/backbone-subroute) to discuss new features and stay-up-to-date on project updates.
 
-### Contributions
+### Ways to Contribute
 
-Contributions are greatly appreciated!  For best results:
+Has Subroute been helpful to you?  If you'd like to give back, here are a few ways:
 
-* Please submit a failing test spec with any issue reports.
-* Please submit passing test specs for new features.
+1. Blog about your experiences using Subroute, and let us know about it!
+2. Create a demo app using Subroute and add it to the repo.
+3. Improve the docs in the README.  
+4. Fix a bug or add a new feature and submit a pull request (see below)
 
-##Usage
+### Pull Requests
 
-```jam install backbone.subroute```
+Pull requests are welcome.  For any significant change or new feature, please start a discussion in the Google Group, or log an issue first.  This will save you some time, in case your idea is deemed not general enough to be included in the project.
+
+Before submitting a pull request, please:
+
+1. Write unit tests to cover any new or modified lines of code, and add it to the `specs/` directory.  See the [Testing](#testing) section for more info.
+2. Run the test specs to make sure everything works.  You can fire up a local web server, and point your browser to `http://localhost:<port>/spec/`
+3. Run the Grunt task to lint, test, and run code coverage on the project.  See the [Build](#build) section for more info.
+
+## Build
+
+### Grunt
+
+Subroute uses [Grunt](http://gruntjs.com/) to verify each build.  If you are not familiar with Grunt, check out the [getting started guide](http://gruntjs.com/getting-started) for an introduction and installation instructions.
+
+Before submitting a pull request, please run the grunt task.  To do so:
+
+First, install local development dependencies.  From the root Subroute directory, run:
+
+```
+npm install
+```
+
+then
+
+```
+grunt
+```
+
+The task will do 4 things:
+
+### Uglify
+The code will be minified and saved to `dist/backbone.subroute.min.js`.
+
+### Lint
+Javascript files are checked for errors using [JSHint](http://jshint.com/).  The JSLint configuration is driven by the `.jshintrc` file.
+
+### Test
+Test specs are run headlessly using [PhantomJS](www.phantomjs.org)
+
+### Coverage
+Code coverage is enforced using [Istanbul](http://istanbul-js.org/).  Currently not every feature of Subroute has coverage.  
+But the enforced coverage levels are set such that code coverage cannot decrease.  Over time, more tests will be added to increase coverage
+to as close to 100% as possible (help with this is greatly appreciated!)
+
+### Travis-CI
+
+The Grunt build is run automatically using [Travis-CI](travis-ci.org) upon every pull request and push to master.  But if any errors are found, you'll need to fix them and re-submit your pull request.  So please run the grunt task locally to save time.
+
+
 
 ### Defining a SubRouter
 Let's say that you've got a section of your web app multiple pieces of functionality all live under the URL prefix `http://yourserver.org/books`.  Here's how you'd create your subrouter.  
@@ -125,7 +192,7 @@ var mySubRouteInstance = new BooksRouter("books", {createTrailingSlashRoutes: tr
 
 Using the examples above, a URL of either `http://yourserver.org/books/search` or `http://yourserver.org/books/search/` would fire the `searchBooks()` callback.
 
-## Unit Tests
+## Testing
 
 The `spec` directory in the repo contains a suite of test specs.  To run them, start a web server in the project directory, then point your browser to the `spec` directory.
 
@@ -137,8 +204,14 @@ See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on h
 
 ## Version History
 
+### 0.4.0
+*Released 17 July 2013*
+
+* Fix [Issue #22](https://github.com/ModelN/backbone.subroute/issues/22), a bug that would cause initial loading to not happen correctly if prefix contained parameters.  Thanks, @whyohwhyamihere for the PR!
+* Add build support using Grunt
+
 ### 0.3.2
-*Released 22 Jan 2013*
+*Released 22 January 2013*
 
 * Skip call to loadUrl on SubRoute init if history hash does not match SubRoute prefix
 
