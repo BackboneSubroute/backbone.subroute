@@ -1,5 +1,6 @@
 #Backbone Subroute
 
+[![Build Status](https://travis-ci.org/ModelN/backbone.subroute.png)](https://travis-ci.org/ModelN/backbone.subroute)
 
 ##About
 
