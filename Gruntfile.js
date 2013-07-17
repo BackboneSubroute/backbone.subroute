@@ -54,5 +54,5 @@ module.exports = function ( grunt ) {
     grunt.registerTask( 'lint', ['jshint'] );
     grunt.registerTask( 'travis', ['jshint', 'connect', 'jasmine'] );
     
-    grunt.registerTask( 'default', ['jshint', 'connect', 'jasmine'] );
+    grunt.registerTask( 'default', ['jshint', 'uglify', 'connect', 'jasmine'] );
 };

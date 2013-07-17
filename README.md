@@ -19,6 +19,8 @@ The module would then have its own SubRoute which would have its own mappings fo
 
 This project is based on [a Gist by Tim Branyen](https:gist.github.com/1235317), and [used with permission](https://gist.github.com/1235317/74bf2745515d902e0bfc87bd8e95e94c93362915#gistcomment-234230) from the original author.
 
+Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
+
 ## Downloads
 
 *Latest Stable Release: 0.4.0*
