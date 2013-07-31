@@ -25,7 +25,7 @@ Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
 
 *Latest Stable Release: 0.4.0*
 
-* Minified: [backbone.subroute.min.js](https://github.com/ModelN/backbone.subroute/blob/0.4.0/dist/backbone.subroute.min.js)
+* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.0/dist/backbone.subroute.min.js)
 * Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.0/backbone.subroute.js)
 * Full Release (Tests, Examples): [0.4.0.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.0.zip).  
 
@@ -200,9 +200,10 @@ The `spec` directory in the repo contains a suite of test specs.  To run them, s
 
 The test specs can also be run online [here](http://modeln.github.com/backbone.subroute/spec/).
 
-## More Examples
+## Examples & Tutorials
 
-See [my blog post](http://www.geekdave.com/?p=13) for detailed instructions on how to set up and use your sub-routes.
+* See [my blog post](http://www.geekdave.com/2012/04/05/module-specific-subroutes-in-backbone/) for a walkthrough of setting up subroutes for an online shopping site.
+* [Swizec Teller](https://twitter.com/swizec) [blogged about](http://swizec.com/blog/writing-modular-backbone-with-backbone-subroute/swizec/6297) how his team used subroutes to simplify a complex multi-module architecture.
 
 ## Version History
 
