@@ -203,7 +203,7 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 ## Examples & Tutorials
 
 * See [my blog post](http://www.geekdave.com/2012/04/05/module-specific-subroutes-in-backbone/) for a walkthrough of setting up subroutes for an online shopping site.
-* [Swizec Teller](https://twitter.com/swizec) [blogged about](http://swizec.com/blog/writing-modular-backbone-with-backbone-subroute/swizec/6297) how his team used subroutes to simplify a complex multi-module architecture.
+* [Swizec Teller](https://twitter.com/swizec) wrote a great piece about [how his team used subroutes](http://swizec.com/blog/writing-modular-backbone-with-backbone-subroute/swizec/6297) to simplify a complex multi-module architecture.
 
 ## Version History
 
