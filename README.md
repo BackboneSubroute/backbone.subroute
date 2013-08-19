@@ -17,7 +17,7 @@ For example, given this URL:
 ...the base router would be responsible for invoking and delegating to the proper module based on "myModule".
 The module would then have its own SubRoute which would have its own mappings for the foo/bar part.
 
-This project is based on [a Gist by Tim Branyen](https:gist.github.com/1235317), and [used with permission](https://gist.github.com/1235317/74bf2745515d902e0bfc87bd8e95e94c93362915#gistcomment-234230) from the original author.
+This project is based on [a Gist by Tim Branyen](https://gist.github.com/1235317), and [used with permission](https://gist.github.com/1235317/74bf2745515d902e0bfc87bd8e95e94c93362915#gistcomment-234230) from the original author.
 
 Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
 
