@@ -1,4 +1,4 @@
-describe("When initializing multiple routes from the same class", function() {
+describe("When initializing multiple routers from the same class", function() {
 
     var subRouter = Backbone.SubRoute.extend( {
         routes: {
