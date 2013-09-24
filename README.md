@@ -23,11 +23,11 @@ Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
 
 ## Downloads
 
-*Latest Stable Release: 0.4.0*
+*Latest Stable Release: 0.4.1*
 
-* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.0/dist/backbone.subroute.min.js)
-* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.0/backbone.subroute.js)
-* Full Release (Tests, Examples): [0.4.0.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.0.zip).  
+* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.1/dist/backbone.subroute.min.js)
+* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.1/backbone.subroute.js)
+* Full Release (Tests, Examples): [0.4.1.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.1.zip).  
 
 *Unreleased Edge Version (master)*
 
@@ -206,6 +206,11 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 * [Swizec Teller](https://twitter.com/swizec) wrote a great piece about [how his team used subroutes](http://swizec.com/blog/writing-modular-backbone-with-backbone-subroute/swizec/6297) to simplify a complex multi-module architecture.
 
 ## Version History
+
+### 0.4.1
+*Released 23 September 2013*
+
+* Fix [Issue #27](https://github.com/ModelN/backbone.subroute/issues/27), which caused multiple instances of the same subrouter class to get polluted with each others routes in their `routes` hash.  Big thanks to @mikesnare for suggesting the fix, and @joshuaballoch for providing the specs to identify the issue.
 
 ### 0.4.0
 *Released 17 July 2013*
