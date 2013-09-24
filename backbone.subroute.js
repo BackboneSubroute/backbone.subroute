@@ -19,6 +19,9 @@
     Backbone.SubRoute = Backbone.Router.extend( {
         constructor:function ( prefix, options ) {
 
+            // each subroute instance should have its own routes hash
+            this.routes = _.clone(this.routes);
+
             // Prefix is optional, set to empty string if not passed
             this.prefix = prefix = prefix || "";
 
@@ -33,7 +36,7 @@
 
             // Required to have Backbone set up routes
             Backbone.Router.prototype.constructor.call( this, options );
-          
+
             // grab the full URL
             var hash;
             if (Backbone.history.fragment) {
@@ -59,37 +62,40 @@
             }
         },
         navigate:function ( route, options ) {
-            if ( route.substr( 0, 1 ) != '/' && 
+            if ( route.substr( 0, 1 ) != '/' &&
                     route.indexOf( this.prefix.substr( 0, this.prefix.length - 1 ) ) !== 0 ) {
-                
-                route = this.prefix + 
-                        ( route ? this.separator : "") + 
+
+                route = this.prefix +
+                        ( route ? this.separator : "") +
                         route;
             }
             Backbone.Router.prototype.navigate.call( this, route, options );
         },
         route : function (route, name, callback) {
-          // strip off any leading slashes in the sub-route path, 
-          // since we already handle inserting them when needed.
-          if (route.substr(0) === "/") {
-            route = route.substr(1, route.length);
-          }
-          
-          var _route = this.prefix;
-          if (route && route.length > 0)
-            _route += (this.separator + route);
-          
-          if (this.createTrailingSlashRoutes) {
-            this.routes[_route + '/'] = name;
-            Backbone.Router.prototype.route.call(this, _route + '/', name, callback);
-          }
-          
-          // Adding this mainly to support the specs, and for debug-ability.  We're altering the way the router
-          // handles routing, but not updating the actual routes hash.  Might seem weird to anyone trying to
-          // debug a routing issue.
-          this.routes[_route] = name;
-          
-          return Backbone.Router.prototype.route.call(this, _route, name, callback);
+            // strip off any leading slashes in the sub-route path, 
+            // since we already handle inserting them when needed.
+            if (route.substr(0) === "/") {
+                route = route.substr(1, route.length);
+            }
+
+            var _route = this.prefix;
+            if (route && route.length > 0)
+                _route += (this.separator + route);
+
+            if (this.createTrailingSlashRoutes) {
+                this.routes[_route + '/'] = name;
+                Backbone.Router.prototype.route.call(this, _route + '/', name, callback);
+            }
+
+            // remove the un-prefixed route from our routes hash
+            delete this.routes[route];
+
+            // add the prefixed-route.  note that this routes hash is just provided 
+            // for informational and debugging purposes and is not used by the actual routing code.
+            this.routes[_route] = name;
+
+            // delegate the creation of the properly-prefixed route to Backbone
+            return Backbone.Router.prototype.route.call(this, _route, name, callback);
         }
     } );
     return Backbone.SubRoute;
