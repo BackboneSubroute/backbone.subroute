@@ -6,7 +6,7 @@
 // Documentation and full license available at:
 // https://github.com/ModelN/backbone.subroute
 
-(function (factory) {
+(function(factory) {
     if (typeof define === 'function' && define.amd) {
         // Register as an AMD module if available...
         define(['underscore', 'backbone'], factory);
@@ -14,10 +14,10 @@
         // Browser globals for the unenlightened...
         factory(_, Backbone);
     }
-}(function(_, Backbone){
+}(function(_, Backbone) {
 
-    Backbone.SubRoute = Backbone.Router.extend( {
-        constructor:function ( prefix, options ) {
+    Backbone.SubRoute = Backbone.Router.extend({
+        constructor: function(prefix, options) {
 
             // each subroute instance should have its own routes hash
             this.routes = _.clone(this.routes);
@@ -28,14 +28,14 @@
             // SubRoute instances may be instantiated using a prefix with or without a trailing slash.
             // If the prefix does *not* have a trailing slash, we need to insert a slash as a separator
             // between the prefix and the sub-route path for each route that we register with Backbone.        
-            this.separator = ( prefix.slice( -1 ) === "/" ) ? "" : "/";
+            this.separator = (prefix.slice(-1) === "/") ? "" : "/";
 
             // if you want to match "books" and "books/" without creating separate routes, set this
             // option to "true" and the sub-router will automatically create those routes for you.
             this.createTrailingSlashRoutes = options && options.createTrailingSlashRoutes;
 
             // Required to have Backbone set up routes
-            Backbone.Router.prototype.constructor.call( this, options );
+            Backbone.Router.prototype.constructor.call(this, options);
 
             // grab the full URL
             var hash;
@@ -48,9 +48,9 @@
             // Trigger the subroute immediately.  this supports the case where 
             // a user directly navigates to a URL with a subroute on the first page load.
             // Check every element, if one matches, break. Prevent multiple matches
-            _.every(this.routes, function(key, route){
+            _.every(this.routes, function(key, route) {
                 // Use the Backbone parser to turn route into regex for matching
-                if(hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
+                if (hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
                     Backbone.history.loadUrl(hash);
                     return false;
                 }
@@ -61,17 +61,17 @@
                 this.postInitialize(options);
             }
         },
-        navigate:function ( route, options ) {
-            if ( route.substr( 0, 1 ) != '/' &&
-                    route.indexOf( this.prefix.substr( 0, this.prefix.length - 1 ) ) !== 0 ) {
+        navigate: function(route, options) {
+            if (route.substr(0, 1) != '/' &&
+                route.indexOf(this.prefix.substr(0, this.prefix.length - 1)) !== 0) {
 
                 route = this.prefix +
-                        ( route ? this.separator : "") +
-                        route;
+                    (route ? this.separator : "") +
+                    route;
             }
-            Backbone.Router.prototype.navigate.call( this, route, options );
+            Backbone.Router.prototype.navigate.call(this, route, options);
         },
-        route : function (route, name, callback) {
+        route: function(route, name, callback) {
             // strip off any leading slashes in the sub-route path, 
             // since we already handle inserting them when needed.
             if (route.substr(0) === "/") {
@@ -97,6 +97,6 @@
             // delegate the creation of the properly-prefixed route to Backbone
             return Backbone.Router.prototype.route.call(this, _route, name, callback);
         }
-    } );
+    });
     return Backbone.SubRoute;
 }));

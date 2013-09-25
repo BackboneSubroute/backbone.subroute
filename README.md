@@ -1,6 +1,6 @@
 #Backbone Subroute
 
-[![Build Status](https://travis-ci.org/ModelN/backbone.subroute.png)](https://travis-ci.org/ModelN/backbone.subroute)
+[![Build Status](https://travis-ci.org/ModelN/backbone.subroute.png)](https://travis-ci.org/ModelN/backbone.subroute) [![devDependency Status](https://david-dm.org/ModelN/backbone.subroute/dev-status.png)](https://david-dm.org/ModelN/backbone.subroute#info=devDependencies)
 
 ##About
 
@@ -83,18 +83,26 @@ then
 grunt
 ```
 
-The task will do 4 things:
+Grunt will perform these tasks:
 
-### Uglify
+* Beautify
+
+To reduce merging and styling issues related to whitespace and formatting, the [jsbeautifier](https://github.com/vkadam/grunt-jsbeautifier) task normalizes all formatting in project source.  If you fail to run `grunt` prior to check-in, and any files have not been beautified, Travis-CI will reject the checkin.
+
+* Uglify
+
 The code will be minified and saved to `dist/backbone.subroute.min.js`.
 
-### Lint
+* Lint
+
 Javascript files are checked for errors using [JSHint](http://jshint.com/).  The JSLint configuration is driven by the `.jshintrc` file.
 
-### Test
+* Test
+
 Test specs are run headlessly using [PhantomJS](www.phantomjs.org)
 
-### Coverage
+* Coverage
+
 Code coverage is enforced using [Istanbul](http://istanbul-js.org/).  Currently not every feature of Subroute has coverage.  
 But the enforced coverage levels are set such that code coverage cannot decrease.  Over time, more tests will be added to increase coverage
 to as close to 100% as possible (help with this is greatly appreciated!)
