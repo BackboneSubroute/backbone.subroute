@@ -197,7 +197,7 @@ URL semantics aside, [many people have found this behavior annoying](https://git
 For example:
 
 ```
-var mySubRouteInstance = new BooksRouter("books", {createTrailingSlashRoutes: true));
+var mySubRouteInstance = new BooksRouter("books", {createTrailingSlashRoutes: true});
 ```
 
 Using the examples above, a URL of either `http://yourserver.org/books/search` or `http://yourserver.org/books/search/` would fire the `searchBooks()` callback.
