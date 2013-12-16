@@ -1,6 +1,6 @@
 #Backbone Subroute
 
-[![Build Status](https://travis-ci.org/ModelN/backbone.subroute.png)](https://travis-ci.org/ModelN/backbone.subroute)[![Code Climate](https://codeclimate.com/github/ModelN/backbone.subroute.png)](https://codeclimate.com/github/ModelN/backbone.subroute)[![devDependency Status](https://david-dm.org/ModelN/backbone.subroute/dev-status.png)](https://david-dm.org/ModelN/backbone.subroute#info=devDependencies) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![Build Status](https://travis-ci.org/ModelN/backbone.subroute.png)](https://travis-ci.org/ModelN/backbone.subroute) [![Code Climate](https://codeclimate.com/github/ModelN/backbone.subroute.png)](https://codeclimate.com/github/ModelN/backbone.subroute) [![devDependency Status](https://david-dm.org/ModelN/backbone.subroute/dev-status.png)](https://david-dm.org/ModelN/backbone.subroute#info=devDependencies) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 
 ##About
 
