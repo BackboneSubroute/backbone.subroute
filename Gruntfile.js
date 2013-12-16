@@ -37,7 +37,12 @@ module.exports = function(grunt) {
                 src: 'backbone.subroute.js',
                 options: {
                     host: 'http://127.0.0.1:8000/',
-                    vendor: ['lib/underscore.js', 'lib/backbone.js', 'spec/lib/sinon-1.3.4.js', 'spec/lib/jasmine-sinon.js'],
+                    vendor: [
+                        'node_modules/underscore/underscore.js',
+                        'node_modules/backbone/backbone.js',
+                        'node_modules/sinon/pkg/sinon.js',
+                        'node_modules/jasmine-sinon/lib/jasmine-sinon.js'
+                    ],
                     specs: 'spec/js/*specs.js',
                     helpers: 'spec/js/*helper.js',
                     template: require('grunt-template-jasmine-istanbul'),
