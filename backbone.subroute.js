@@ -20,7 +20,8 @@
         constructor: function(prefix, options) {
 
             // each subroute instance should have its own routes hash
-            this.routes = _.clone(this.routes);
+            // if not route set then create a object 
+            this.routes = _.clone(this.routes) || {};
 
             // Prefix is optional, set to empty string if not passed
             this.prefix = prefix = prefix || "";
