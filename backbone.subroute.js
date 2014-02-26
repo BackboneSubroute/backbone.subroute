@@ -10,7 +10,14 @@
     if (typeof define === 'function' && define.amd) {
         // Register as an AMD module if available...
         define(['underscore', 'backbone'], factory);
-    } else {
+    }
+     else if (typeof exports !== 'undefined') {
+        var _ = require('underscore'),
+            Backbone = require('backbone');
+        module.exports = factory(_, Backbone);
+    }
+    
+    else {
         // Browser globals for the unenlightened...
         factory(_, Backbone);
     }
