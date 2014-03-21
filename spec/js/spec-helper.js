@@ -37,7 +37,7 @@ SubRouteTest.setUp = function(prefix, options, overrideRoutes) {
         routesToUse = overrideRoutes;
     }
 
-    if (prefix) {
+    if (prefix !== undefined) {
         var testRouter = Backbone.SubRoute.extend({
             routes: routesToUse
         });
