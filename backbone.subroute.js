@@ -79,8 +79,12 @@
             }
 
             var _route = this.prefix;
-            if (route && route.length > 0)
-                _route += (this.separator + route);
+            if (route && route.length > 0) {
+                if (this.prefix.length > 0)
+                    _route += this.separator;
+
+                _route += route;
+            }
 
             if (this.createTrailingSlashRoutes) {
                 this.routes[_route + '/'] = name;
