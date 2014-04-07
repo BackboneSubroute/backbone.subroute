@@ -29,9 +29,6 @@
   "scripts": {
     "test": "grunt travis --verbose"
   },
-  "dependencies": {
-    "backbone": "~1.1.0"
-  },
   "devDependencies": {
     "grunt": "~0.4",
     "grunt-cli": "~0.1",
@@ -44,7 +41,8 @@
     "grunt-template-jasmine-istanbul": "~0.2.4",
     "jasmine-sinon": "~0.3.1",
     "sinon": "~1.7.3",
-    "underscore": "~1.5.2"
+    "underscore": "~1.5.2",
+    "backbone": "~1.1.0"
   },
   "keywords": [
     "backbone",
