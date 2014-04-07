@@ -1,4 +1,4 @@
-// backbone-subroute.js v0.4.1
+// backbone-subroute.js v0.4.2
 //
 // Copyright (C) 2012 Dave Cadwallader, Model N, Inc.  
 // Distributed under the MIT License

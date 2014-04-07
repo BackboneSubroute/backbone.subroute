@@ -23,11 +23,11 @@ Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
 
 ## Downloads
 
-*Latest Stable Release: 0.4.1*
+*Latest Stable Release: 0.4.2*
 
-* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.1/dist/backbone.subroute.min.js)
-* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.1/backbone.subroute.js)
-* Full Release (Tests, Examples): [0.4.1.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.1.zip).  
+* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.2/dist/backbone.subroute.min.js)
+* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.2/backbone.subroute.js)
+* Full Release (Tests, Examples): [0.4.2.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.2.zip).  
 
 *Unreleased Edge Version (master)*
 
@@ -214,6 +214,14 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 * [Swizec Teller](https://twitter.com/swizec) wrote a great piece about [how his team used subroutes](http://swizec.com/blog/writing-modular-backbone-with-backbone-subroute/swizec/6297) to simplify a complex multi-module architecture.
 
 ## Version History
+
+### 0.4.2
+*Released 7 April 2014*
+
+* Fix issues with [dynamic route creation](https://github.com/ModelN/backbone.subroute/pull/31). Thanks [@hellorachid](https://github.com/hellorachid) for the fix!
+* Allow [empty prefix](https://github.com/ModelN/backbone.subroute/pull/34).  Thanks to [@maoueh](https://github.com/maoueh) for the PR!
+* Support [for CommonJS](https://github.com/ModelN/backbone.subroute/pull/35) thanks to [@gdw2](https://github.com/gdw2)'s work.
+* Published on NPM thanks to [@thejameskyle](https://github.com/ModelN/backbone.subroute/pull/36)'s prep work.
 
 ### 0.4.1
 *Released 23 September 2013*
