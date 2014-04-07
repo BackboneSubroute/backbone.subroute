@@ -1,0 +1,7 @@
+.istanbul
+.grunt
+spec
+.jshintrc
+.travis.yml
+beautify.json
+Gruntfile.js
