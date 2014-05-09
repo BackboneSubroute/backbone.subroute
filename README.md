@@ -23,11 +23,11 @@ Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
 
 ## Downloads
 
-*Latest Stable Release: 0.4.2*
+*Latest Stable Release: 0.4.3*
 
-* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.2/dist/backbone.subroute.min.js)
-* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.2/backbone.subroute.js)
-* Full Release (Tests, Examples): [0.4.2.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.2.zip).  
+* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.3/dist/backbone.subroute.min.js)
+* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.3/backbone.subroute.js)
+* Full Release (Tests, Examples): [0.4.2.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.3.zip).  
 
 *Unreleased Edge Version (master)*
 
@@ -214,6 +214,11 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 * [Swizec Teller](https://twitter.com/swizec) wrote a great piece about [how his team used subroutes](http://swizec.com/blog/writing-modular-backbone-with-backbone-subroute/swizec/6297) to simplify a complex multi-module architecture.
 
 ## Version History
+
+### 0.4.3 
+*Released 9 May 2014*
+
+* Fix [issue 38](https://github.com/ModelN/backbone.subroute/issues/38) due to minified dist file being out-of-sync from latest source.  
 
 ### 0.4.2
 *Released 7 April 2014*
