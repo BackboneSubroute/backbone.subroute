@@ -10,6 +10,9 @@
     if (typeof define === 'function' && define.amd) {
         // Register as an AMD module if available...
         define(['underscore', 'backbone'], factory);
+    } else if (typeof exports !== 'undefined') {
+        // CommonJS
+        module.exports = factory(require('underscore'), require('backbone'));
     } else {
         // Browser globals for the unenlightened...
         factory(_, Backbone);
