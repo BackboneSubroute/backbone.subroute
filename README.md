@@ -215,6 +215,12 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 
 ## Version History
 
+### 0.4.4
+*Released 1 September 2014*
+
+* Add official bower support
+* Add grunt-version to dev dependencies
+
 ### 0.4.3 
 *Released 9 May 2014*
 
