@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
@@ -23,6 +24,21 @@ module.exports = function(grunt) {
                 options: {
                     config: "beautify.json",
                     mode: "VERIFY_ONLY"
+                }
+            }
+        },
+        version: {
+            defaults: {
+                src: [
+                    'package.json', 'bower.json'
+                ]
+            },
+            banner: {
+                src: [
+                    '<%= pkg.name %>.js'
+                ],
+                options: {
+                    prefix: "^\/\/ <%= pkg.name %> "
                 }
             }
         },
@@ -71,10 +87,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-contrib-jasmine');
+    grunt.loadNpmTasks('grunt-version');
 
     grunt.registerTask('beautify', ['jsbeautifier:fix']);
     grunt.registerTask('lint', ['jshint']);
     grunt.registerTask('travis', ['jsbeautifier:check', 'jshint', 'connect', 'jasmine']);
 
-    grunt.registerTask('default', ['jsbeautifier:fix', 'jshint', 'uglify', 'connect', 'jasmine']);
+    grunt.registerTask('default', ['version', 'jsbeautifier:fix', 'jshint', 'uglify', 'connect', 'jasmine']);
 };

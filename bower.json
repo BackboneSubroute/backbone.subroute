@@ -1,5 +1,6 @@
 {
-  "name": "backbone-subrouter",
+  "name": "backbone-subroute",
+  "version": "0.4.4",
   "main": "dist/backbone.subroute.min.js",
   "ignore": [
     "spec",

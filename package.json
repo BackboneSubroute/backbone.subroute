@@ -1,7 +1,7 @@
 {
   "name": "backbone.subroute",
   "description": "Backbone.subroute extends the functionality of Backbone.router such that each of an application's modules can define its own module-specific routes.",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "homepage": "https://github.com/ModelN/backbone.subroute",
   "author": {
     "name": "Dave Cadwallader",
@@ -42,7 +42,8 @@
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "jasmine-sinon": "^0.4.0",
     "sinon": "^1.10.3",
-    "underscore": "^1.6.0"
+    "underscore": "^1.6.0",
+    "grunt-version": "^0.3.0"
   },
   "keywords": [
     "backbone",
