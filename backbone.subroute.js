@@ -1,6 +1,6 @@
-// backbone-subroute 0.4.4
+// backbone-subroute 0.4.5
 //
-// Copyright (C) 2012 Dave Cadwallader, Model N, Inc.  
+// Copyright (C) 2012 Dave Cadwallader, Model N, Inc.
 // Distributed under the MIT License
 //
 // Documentation and full license available at:
@@ -30,7 +30,7 @@
 
             // SubRoute instances may be instantiated using a prefix with or without a trailing slash.
             // If the prefix does *not* have a trailing slash, we need to insert a slash as a separator
-            // between the prefix and the sub-route path for each route that we register with Backbone.        
+            // between the prefix and the sub-route path for each route that we register with Backbone.
             this.separator = (prefix.slice(-1) === "/") ? "" : "/";
 
             // if you want to match "books" and "books/" without creating separate routes, set this
@@ -48,7 +48,7 @@
                 hash = Backbone.history.getHash();
             }
 
-            // Trigger the subroute immediately.  this supports the case where 
+            // Trigger the subroute immediately.  this supports the case where
             // a user directly navigates to a URL with a subroute on the first page load.
             // Check every element, if one matches, break. Prevent multiple matches
             _.every(this.routes, function(key, route) {
@@ -75,7 +75,7 @@
             Backbone.Router.prototype.navigate.call(this, route, options);
         },
         route: function(route, name, callback) {
-            // strip off any leading slashes in the sub-route path, 
+            // strip off any leading slashes in the sub-route path,
             // since we already handle inserting them when needed.
             if (route.substr(0) === "/") {
                 route = route.substr(1, route.length);
@@ -97,7 +97,7 @@
             // remove the un-prefixed route from our routes hash
             delete this.routes[route];
 
-            // add the prefixed-route.  note that this routes hash is just provided 
+            // add the prefixed-route.  note that this routes hash is just provided
             // for informational and debugging purposes and is not used by the actual routing code.
             this.routes[_route] = name;
 

@@ -23,11 +23,11 @@ Subroute is lightweight, weighing in at under 300 bytes minified and gzipped.
 
 ## Downloads
 
-*Latest Stable Release: 0.4.3*
+*Latest Stable Release: 0.4.5*
 
-* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.3/dist/backbone.subroute.min.js)
-* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.3/backbone.subroute.js)
-* Full Release (Tests, Examples): [0.4.2.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.3.zip).  
+* Minified: [backbone.subroute.min.js](https://raw.github.com/ModelN/backbone.subroute/0.4.5/dist/backbone.subroute.min.js)
+* Development (Uncompressed, Comments): [backbone.subroute.js](https://raw.github.com/ModelN/backbone.subroute/0.4.5/backbone.subroute.js)
+* Full Release (Tests, Examples): [0.4.5.zip](https://github.com/ModelN/backbone.subroute/archive/0.4.5.zip).  
 
 *Unreleased Edge Version (master)*
 
@@ -119,9 +119,9 @@ Let's say that you've got a section of your web app multiple pieces of functiona
 ```
 var BooksRouter = Backbone.SubRoute.extend({
     routes: {
-        ""               : "showBookstoreHomepage", 
-        "search"         : "searchBooks",           
-        "view/:bookId"   : "viewBookDetail",        
+        ""               : "showBookstoreHomepage",
+        "search"         : "searchBooks",
+        "view/:bookId"   : "viewBookDetail",
     },
     showBookstoreHomepage: function() {
         // ...module-specific code
@@ -215,13 +215,18 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 
 ## Version History
 
+### 0.4.5
+*Released 13 October 2014*
+
+* Actually [export the router](https://github.com/ModelN/backbone.subroute/pull/44) when used as CommonJS module (Thanks, [xMartin](https://github.com/xMartin)!)
+
 ### 0.4.4
 *Released 1 September 2014*
 
 * Add official bower support
 * Add grunt-version to dev dependencies
 
-### 0.4.3 
+### 0.4.3
 *Released 9 May 2014*
 
 * Fix [issue 38](https://github.com/ModelN/backbone.subroute/issues/38) due to minified dist file being out-of-sync from latest source.  
@@ -253,7 +258,7 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 ### 0.3.1
 *Released 26 October 2012*
 
-* Fixed [Issue #13](https://github.com/ModelN/backbone.subroute/issues/13).  This was an IE8-only issue where manually 
+* Fixed [Issue #13](https://github.com/ModelN/backbone.subroute/issues/13).  This was an IE8-only issue where manually
   including a trailing slash in a subroute prefix caused a double slash to appear in the fully-qualified route.
   Thanks to [@mikesnare](https://github.com/mikesnare) for logging the issue and providing the fix!
 * Added Jasmine test specs for above case
