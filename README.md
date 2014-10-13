@@ -138,7 +138,7 @@ Note that the subrouter, itself, doesn't know or care what its prefix is.  The p
 
 ### Creating an Instance
 
-To use your sub-router, siply call its constructor and provide a prefix, like so:
+To use your sub-router, simply call its constructor and provide a prefix, like so:
 
 ```
 var mySubRouteInstance = new BooksRouter("books");
