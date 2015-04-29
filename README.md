@@ -215,6 +215,11 @@ The test specs can also be run online [here](http://modeln.github.com/backbone.s
 
 ## Version History
 
+### 0.4.6
+*Released 29 April 2015*
+
+* [Allows for](https://github.com/ModelN/backbone.subroute/pull/52) using Backbone.history.loadUrl() into an uninitialized subRoute (Thanks, [oskbor](https://github.com/oskbor)!)
+
 ### 0.4.5
 *Released 13 October 2014*
 
