@@ -43,7 +43,7 @@
             // grab the full URL
             var hash;
             if (Backbone.history.fragment) {
-                hash = Backbone.history.getFragment();
+                hash = Backbone.history.getFragment(Backbone.history.fragment);
             } else {
                 hash = Backbone.history.getHash();
             }

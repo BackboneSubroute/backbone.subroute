@@ -15,7 +15,31 @@ describe("When an initial URL hash is provided at subroute initialization time",
             routes: {
                 "": "handleRootRoute",
                 "foo": "handleRootFooRoute",
-                "user/:user": "handleRootUserRoute"
+                "user/:user": "handleRootUserRoute",
+                "subroute*args": "initSubRoute"
+            },
+            initSubRoute: function(args) {
+
+
+                var testRouter = Backbone.SubRoute.extend({
+                    routes: {
+                        "": "handleDefaultRoute",
+                        "foo": "handleFooRoute",
+                        "profile": "handleProfileRoute"
+                    },
+                    handleDefaultRoute: function() {
+                        that.defaultRouteSpy();
+                    },
+                    handleFooRoute: function() {
+                        that.fooRouteSpy();
+                    },
+                    handleProfileRoute: function() {
+                        that.profileRouteSpy();
+                    }
+                });
+
+                this.baseRouter = new testRouter("subroute");
+
             }
         });
 
@@ -135,6 +159,20 @@ describe("When an initial URL hash is provided at subroute initialization time",
 
         expect(this.loadUrlSpy).toHaveBeenCalledOnce();
     });
+
+    it('triggers the "foo" route if the loadURL matches the route', function() {
+
+
+        Backbone.history.loadUrl("subroute/foo");
+
+        expect(this.fooRouteSpy).toHaveBeenCalledOnce();
+        expect(this.fooRouteSpy).toHaveBeenCalledWith();
+
+        //Once in this test and once in the implementation
+        expect(this.loadUrlSpy).toHaveBeenCalledTwice();
+
+    });
+
 
 
 });
