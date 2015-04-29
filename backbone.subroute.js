@@ -1,4 +1,4 @@
-// backbone-subroute 0.4.5
+// backbone-subroute 0.4.6
 //
 // Copyright (C) 2012 Dave Cadwallader, Model N, Inc.
 // Distributed under the MIT License
