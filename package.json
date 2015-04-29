@@ -42,7 +42,7 @@
     "grunt-template-jasmine-requirejs": "^0.2.0",
     "grunt-version": "^0.3.0",
     "jasmine-sinon": "^0.4.0",
-    "sinon": "^1.10.3",
+    "sinon": "~1.10.3",
     "underscore": "^1.6.0"
   },
   "keywords": [
