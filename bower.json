@@ -14,6 +14,6 @@
     "package.json"
   ],
   "dependencies": {
-    "backbone": ">=1.0.0"
+    "backbone": ">=1.1.0"
   }
 }
