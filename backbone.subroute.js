@@ -52,6 +52,14 @@
             // a user directly navigates to a URL with a subroute on the first page load.
             // Check every element, if one matches, break. Prevent multiple matches
             _.every(this.routes, function(key, route) {
+                
+                if (route.substr(0, 1) != '/' &&
+                    route.indexOf(this.prefix.substr(0, this.prefix.length - 1)) !== 0) {
+
+                    route = this.prefix +
+                        (route ? this.separator : "") +
+                        route;
+                }
                 // Use the Backbone parser to turn route into regex for matching
                 if (hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
                     Backbone.history.loadUrl(hash);
