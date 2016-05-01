@@ -1,6 +1,10 @@
 #Backbone Subroute
 
-[![Build Status](https://travis-ci.org/ModelN/backbone.subroute.png)](https://travis-ci.org/ModelN/backbone.subroute) [![Code Climate](https://codeclimate.com/github/ModelN/backbone.subroute.png)](https://codeclimate.com/github/ModelN/backbone.subroute) [![devDependency Status](https://david-dm.org/ModelN/backbone.subroute/dev-status.png)](https://david-dm.org/ModelN/backbone.subroute#info=devDependencies) [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
+## Unmaintained!
+
+This project is no longer being maintained.  Feel free to fork and continue development.
 
 ##About
 
