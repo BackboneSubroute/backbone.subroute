@@ -53,7 +53,7 @@
             // Check every element, if one matches, break. Prevent multiple matches
             _.every(this.routes, function(key, route) {
                 // Use the Backbone parser to turn route into regex for matching
-                if (hash.match(Backbone.Router.prototype._routeToRegExp(route))) {
+                if (hash.match(this._routeToRegExp(route))) {
                     Backbone.history.loadUrl(hash);
                     return false;
                 }
@@ -103,6 +103,9 @@
 
             // delegate the creation of the properly-prefixed route to Backbone
             return Backbone.Router.prototype.route.call(this, _route, name, callback);
+        },
+        _routeToRegExp: function(route) {
+            return Backbone.Router.prototype._routeToRegExp(route);
         }
     });
     return Backbone.SubRoute;
